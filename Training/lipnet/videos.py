@@ -5,10 +5,11 @@ sys.path.insert(0, CURRENT_PATH)
 import numpy as np
 from keras import backend as K
 from scipy import ndimage
-from scipy.misc import imresize
+import matplotlib.pyplot as plt
 import skvideo.io
 import dlib
 from aligns import Align
+from PIL import Image
 
 class VideoAugmenter(object):
     @staticmethod
@@ -115,7 +116,7 @@ class Video(object):
 
     def from_frames(self, path):
         frames_path = sorted([os.path.join(path, x) for x in os.listdir(path)])
-        frames = [ndimage.imread(frame_path) for frame_path in frames_path]
+        frames = [plt.imread(frame_path) for frame_path in frames_path]
         self.handle_type(frames)
         return self
 
@@ -180,7 +181,7 @@ class Video(object):
                 normalize_ratio = MOUTH_WIDTH / float(mouth_right - mouth_left)
 
             new_img_shape = (int(frame.shape[0] * normalize_ratio), int(frame.shape[1] * normalize_ratio))
-            resized_img = imresize(frame, new_img_shape)
+            resized_img = np.array(Image.fromarray(frame).resize(new_img_shape))
 
             mouth_centroid_norm = mouth_centroid * normalize_ratio
 
