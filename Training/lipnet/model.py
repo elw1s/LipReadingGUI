@@ -1,10 +1,7 @@
 from keras.layers.convolutional import Conv3D, ZeroPadding3D
 from keras.layers.pooling import MaxPooling3D
 from keras.layers.core import Dense, Activation, SpatialDropout3D, Flatten
-from keras.layers.wrappers import Bidirectional, TimeDistributed
-from keras.layers.recurrent import GRU
-from keras.layers.normalization import BatchNormalization
-from keras.layers import Input
+from keras.layers import Bidirectional, TimeDistributed , GRU, BatchNormalization, Input
 from keras.models import Model
 from layers import CTC
 from keras import backend as K

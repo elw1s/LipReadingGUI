@@ -2,10 +2,11 @@ import os
 import numpy as np
 from keras import backend as K
 from scipy import ndimage
-from scipy.misc import imresize
 import skvideo.io
 import dlib
 from aligns import Align
+from PIL import Image
+
 
 class Video(object):
     def __init__(self, vtype='mouth', face_predictor_path=None):
@@ -81,7 +82,7 @@ class Video(object):
                 normalize_ratio = MOUTH_WIDTH / float(mouth_right - mouth_left)
 
             new_img_shape = (int(frame.shape[0] * normalize_ratio), int(frame.shape[1] * normalize_ratio))
-            resized_img = imresize(frame, new_img_shape)
+            resized_img = np.array(Image.fromarray(frame).resize(new_img_shape))
 
             mouth_centroid_norm = mouth_centroid * normalize_ratio
 
