@@ -15,6 +15,7 @@ class Statistics(keras.callbacks.Callback):
         self.num_samples_stats = num_samples_stats
         self.decoder = decoder
         if output_dir is not None and not os.path.exists(self.output_dir):
+            #print(self.output_dir)
             os.makedirs(self.output_dir)
 
     def get_statistics(self, num):

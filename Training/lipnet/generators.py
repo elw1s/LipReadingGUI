@@ -112,7 +112,12 @@ class BasicGenerator(keras.callbacks.Callback):
         align_hash = {}
         for video_path in video_list:
             video_id = os.path.splitext(video_path)[0].split('/')[-1]
-            align_path = os.path.join(self.align_path, video_id)+".align"
+            train_ID = video_id.split('\\')
+            align_path = self.align_path + '\\' + train_ID[-1] +".align"
+            print("Video path =",video_path) 
+            print("Video ID = ",video_id)
+            print("Self.align_path = ", self.align_path)
+            print("Align path = " , align_path)
             align_hash[video_id] = Align(self.absolute_max_string_len, text_to_labels).from_file(align_path)
         return align_hash
 

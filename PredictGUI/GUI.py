@@ -27,7 +27,7 @@ class App:
         self.bottomFrame.pack(side="bottom")
 
         # Button that lets the user take uploads a video
-        self.btn_upload = tkinter.Button(window, text="Upload", width=10, command=self.upload, bg="black")
+        self.btn_upload = tkinter.Button(window, text="Upload", width=10, command=self.upload)
         self.btn_upload.pack(side="top")
 
         self.btn_caption = tkinter.Button(window, text="Caption", width=10, command=self.caption)
@@ -43,8 +43,8 @@ class App:
 
     def clear(self):
 	    self.T.delete(1.0, tkinter.END)
-	    #self.canvas.delete("all")
-
+        #self.canvas.delete("all")
+        
     def caption(self):
         VIDEO_PATH = self.video_source
         video, result = predict(WEIGHTS_PATH, VIDEO_PATH)
